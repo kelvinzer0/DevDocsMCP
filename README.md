@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/kelvinzer0/DevDocsMCP/actions/workflows/release.yml/badge.svg)](https://github.com/kelvinzer0/DevDocsMCP/actions/workflows/release.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/kelvinzer0/DevDocsMCP?style=flat-square)](https://github.com/kelvinzer0/DevDocsMCP/releases/latest)
 [![Go Version](https://img.shields.io/badge/Go-1.22-00ADD8?style=flat-square&logo=go)](https://golang.org)
-[![Ruby Version](https://img.shields.io/badge/Ruby-3.x-CC342D?style=flat-square&logo=ruby)](https://www.ruby-lang.org/)
+
 
 DevDocsMCP is a command-line tool that allows you to search and read documentation directly from [DevDocs.io](https://devdocs.io/). It operates purely online, fetching data as needed.
 
