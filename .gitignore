@@ -1,7 +1,4 @@
-make clean
 # Compiled binaries
-devdocsmcp
-devdocsmcp.exe
 
 # Go build cache
 .cache/go-build/
