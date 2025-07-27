@@ -45,6 +45,7 @@ jobs:
         run: |
           go build -o ${{ env.FILENAME }}  ./cmd/devdocsmcp
           ls -alh
+        working-directory: ${{ github.workspace }}
       
       - name: Upload files to Artifacts
         uses: actions/upload-artifact@v4
