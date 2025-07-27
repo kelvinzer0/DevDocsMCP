@@ -35,7 +35,7 @@ To search for a term within a specific documentation set:
 ./devdocsmcp search -lang <language_slug> -query <search_query>
 ```
 
-*   `<language_slug>`: The slug for the documentation (e.g., `html`, `css`, `angularjs~1.8`). You can find a list of available documentation on [DevDocs.io](https://devdocs.io/).
+*   `<language_slug>`: The slug for the documentation (e.g., `html`, `css`, `angularjs~1.8`, `vite`, `tailwindcss`, `go`, `mysql`, `sqlite`). You can find a list of available documentation on [DevDocs.io](https://devdocs.io/).
 *   `<search_query>`: The term you want to search for.
 
 **Examples:**
@@ -93,15 +93,39 @@ To configure `DevDocsMCP` as an MCP server, you can add a section like this to y
 ```json
 {
   "mcpServers": {
-    "devdocs-html-css": {
+    "devdocs-html": {
         "command": "/path/to/your/DevDocsMCP/cmd/devdocsmcp",
-        "args":["server", "--lang", "html,css"]
+        "args":["server", "--lang", "html"]
+    },
+    "devdocs-css": {
+        "command": "/path/to/your/DevDocsMCP/cmd/devdocsmcp",
+        "args":["server", "--lang", "css"]
+    },
+    "devdocs-vite": {
+        "command": "/path/to/your/DevDocsMCP/cmd/devdocsmcp",
+        "args":["server", "--lang", "vite"]
+    },
+    "devdocs-tailwindcss": {
+        "command": "/path/to/your/DevDocsMCP/cmd/devdocsmcp",
+        "args":["server", "--lang", "tailwindcss"]
+    },
+    "devdocs-go": {
+        "command": "/path/to/your/DevDocsMCP/cmd/devdocsmcp",
+        "args":["server", "--lang", "go"]
+    },
+    "devdocs-mysql": {
+        "command": "/path/to/your/DevDocsMCP/cmd/devdocsmcp",
+        "args":["server", "--lang", "mysql"]
+    },
+    "devdocs-sqlite": {
+        "command": "/path/to/your/DevDocsMCP/cmd/devdocsmcp",
+        "args":["server", "--lang", "sqlite"]
     }
   }
 }
 ```
 
-**Note:** Replace `/path/to/your/DevDocsMCP/cmd/devdocsmcp` with the actual absolute path to your `devdocsmcp` executable. The key `"devdocs-html-css"` (or `"devdocs-all"`) can be any unique identifier for this server.
+**Note:** Replace `/path/to/your/DevDocsMCP/cmd/devdocsmcp` with the actual absolute path to your `devdocsmcp` executable. The key `"devdocs-html-css"` can be any unique identifier for this server.
 
 ### Display Allowed Languages
 
