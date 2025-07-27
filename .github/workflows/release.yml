@@ -33,11 +33,11 @@ jobs:
           check-latest: true
       - name: Gen output name
         run: |
-          EXT=""
-          if [ "${{ matrix.goos }}" == "windows" ]; then
-            EXT=".exe"
-          fi
-          echo "FILENAME=devdocsmcp_${{ matrix.goos }}_${{ matrix.goarch }}${{ env.EXT }}" >> ${GITHUB_ENV}
+          echo "FILENAME=devdocsmcp_${{ matrix.goos }}_${{ matrix.goarch }}" >> ${GITHUB_ENV}
+      - name: Rename Windows File
+        if: matrix.goos == 'windows'
+        run: |
+          echo "FILENAME=devdocsmcp_${{ matrix.goos }}_${{ matrix.goarch }}.exe" >> ${GITHUB_ENV}
       - name: Git Status (before build)
         run: |
           git status
