@@ -1,0 +1,26 @@
+make clean
+# Compiled binaries
+devdocsmcp
+devdocsmcp.exe
+
+# Go build cache
+.cache/go-build/
+go.work
+go.work.sum
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*~

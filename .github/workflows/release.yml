@@ -1,0 +1,60 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+  release:
+    types: [ released,prereleased ]
+
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        goos: [ windows,  linux, darwin ]
+        goarch: [ amd64, arm64 ]
+    runs-on: ubuntu-latest
+    env:
+      CGO_ENABLED: 0
+      GOOS: ${{ matrix.goos }}
+      GOARCH: ${{ matrix.goarch }}
+    steps:
+      - name: Get version
+        id: get_version
+        run: |
+          echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          echo "${GITHUB_REF}"
+      - name: Checkout
+        uses: actions/checkout@v4.0.0
+      - name: Setup Go environment
+        uses: actions/setup-go@v4.1.0
+        with:
+          check-latest: true
+      - name: Gen output name
+        run: |
+          EXT=""
+          if [ "${{ matrix.goos }}" == "windows" ]; then
+            EXT=".exe"
+          fi
+          echo "FILENAME=devdocsmcp_${{ matrix.goos }}_${{ matrix.goarch }}${{ env.EXT }}" >> ${GITHUB_ENV}
+      - name: Git Status (before build)
+        run: |
+          git status
+      - name: BE Build
+        run: |
+          go build -o ${{ env.FILENAME }}  ./cmd/devdocsmcp
+          ls -alh
+      
+      - name: Upload files to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.FILENAME }}
+          path: ${{ env.FILENAME }}
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ env.FILENAME }}
+          tag: ${{ github.ref }}
+          file_glob: true
